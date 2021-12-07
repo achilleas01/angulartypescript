@@ -1,0 +1,293 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card" style="width: 1178px; margin: 0 auto;">
+            <div class="card-title">
+              <h4 style="margin-top: 0.7rem; padding: 20px;">Εκδοση Κλειδάριθμου</h4>
+            </div>
+            <div class="card-body">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+                    <form [formGroup]="myFormModel" (ngSubmit)="onSubmit()">
+                      <div class="mb-3 row">
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            formControlName="klidarithmosChoice"
+                            value="doy"
+                            id="RadioDefault1"
+                            (change)="changeKlType($event)"
+                          />
+                          <label class="form-check-label" for="RadioDefault1">
+                            Κλειδάριθμος μέσω ΔΟΥ
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            formControlName="klidarithmosChoice"
+                            value="sms"
+                            id="RadioDefault2"
+                            (change)="changeKlType($event)"
+                          />
+                          <label class="form-check-label" for="RadioDefault2">
+                            Κλειδάριθμος μέσω SMS και email
+                          </label>
+                        </div>
+                        <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              formControlName="klidarithmosChoice"
+                              value="aadelive"
+                              id="RadioDefault3"
+                              (change)="changeKlType($event)"
+                            />
+                            <label class="form-check-label" for="RadioDefault3">
+                              Κλειδάριθμος μέσω AADELIVE
+                            </label>
+                          </div>
+                      </div>
+                      <h5 style="margin-top: 0.7rem; padding: 10px;">Επιλέξτε username και κωδικό</h5>
+                      <div formGroupName="passwordsGroup">
+                      <div class="mb-3 row">
+                        <label for="username" class="col-sm-4 col-form-label"
+                          >Username</label
+                        >
+                        <div class="col-sm-8">
+                          <input
+                            type="text"
+                            id="username"
+                            class="form-control"
+                            formControlName="username"
+                          />
+                        </div>
+                      </div>
+                        <div class="mb-3 row">
+                          <label for="password" class="col-sm-4 col-form-label"
+                            >Κωδικός</label
+                          >
+                          <div class="col-sm-8">
+                            <input
+                              type="password"
+                              id="password"
+                              class="form-control"
+                              formControlName="password"
+                            />
+                          </div>
+                        </div>
+                        <div class="mb-3 row">
+                          <label for="pconfirm" class="col-sm-4 col-form-label"
+                            >Επιβεβαίωση κωδικού</label
+                          >
+                          <div class="col-sm-8">
+                            <input
+                              type="password"
+                              id="pconfirm"
+                              class="form-control"
+                              formControlName="pconfirm"
+                            />
+                          </div>
+                        </div>
+                      </div><!-- password group-->
+                      <div formGroupName="personDetails">
+                        <h5 style="margin-top: 0.7rem; padding: 10px;">Συμπληρώστε τον ΑΦΜ και το ονοματεπώνυμο σας</h5>
+                        <div class="mb-3 row">
+                            <label for="afm" class="col-sm-4 col-form-label"
+                              >ΑΦΜ</label
+                            >
+                            <div class="col-sm-8">
+                              <input
+                                type="text"
+                                id="afm"
+                                class="form-control"
+                                formControlName="afm"
+                              />
+                            </div>
+                           <p class="lblError" *ngIf="person.controls['afm'].errors && !person.controls['afm'].pristine">  
+                              το πεδίο ΑΦΜ είναι υποχρεωτικό
+                          </p>
+                          </div>
+                          <div class="mb-3 row">
+                            <label for="lastname" class="col-sm-4 col-form-label"
+                              >Επώνυμο</label
+                            >
+                            <div class="col-sm-8">
+                              <input
+                                type="text"
+                                id="lastname"
+                                class="form-control"
+                                formControlName="lastname"
+                              />
+                            </div>
+                            <p class="lblError" *ngIf="person.controls['lastname'].errors && !person.controls['lastname'].pristine">  
+                              το πεδίο Επώνυμο είναι υποχρεωτικό
+                          </p>
+                          </div>
+                          <div class="mb-3 row">
+                            <label for="lastname" class="col-sm-4 col-form-label"
+                              >Όνομα</label
+                            >
+                            <div class="col-sm-8">
+                              <input
+                                type="text"
+                                id="firstname"
+                                class="form-control"
+                                formControlName="firstname"
+                              />
+                            </div>
+                            <p class="lblError" *ngIf="person.controls['firstname'].errors && !person.controls['firstname'].pristine">  
+                              το πεδίο Όνομα είναι υποχρεωτικό
+                          </p>
+                          </div>
+                          <div class="mb-3 row">
+                            <label for="fathername" class="col-sm-4 col-form-label"
+                              >Πατρώνυμο</label
+                            >
+                            <div class="col-sm-8">
+                              <input
+                                type="text"
+                                id="fathername"
+                                class="form-control"
+                                formControlName="fathername"
+                              />
+                            </div>
+                            <p class="lblError" *ngIf="person.controls['fathername'].errors && !person.controls['fathername'].pristine">  
+                              το πεδίο Πατρώνυμο είναι υποχρεωτικό
+                          </p>
+                          </div>
+                          <div class="mb-3 row" *ngIf="myFormModel.get('klidarithmosChoice').value=='sms'">
+                            <label for="idKind" class="col-sm-4 col-form-label"
+                              >Τύπος Ταυτότητας</label
+                            >
+                            <div class="col-sm-8">
+                              <select formControlName="idKind" class="form-control">
+                                <option [ngValue]="null" selected>Επιλέξτε τύπο ταυτότητας</option>
+                                <option *ngFor="let it of identityTypes" [ngValue]="it.id">
+                                 {{ it.description }}
+                                </option>
+                              </select> 
+                            </div>
+                            <p class="lblError" *ngIf="person.controls['idKind'].errors && !person.controls['idKind'].pristine">  
+                              το πεδίο Τύπος Ταυτότητας είναι υποχρεωτικό
+                          </p>
+                          </div>
+                          <div class="mb-3 row" *ngIf="myFormModel.get('klidarithmosChoice').value=='sms'">
+                            <label for="identityNum" class="col-sm-4 col-form-label"
+                              >Αρ. Ταυτότητας</label
+                            >
+                            <div class="col-sm-8">
+                              <input
+                                type="text"
+                                id="identityNum"
+                                class="form-control"
+                                formControlName="identityNum"
+                              />
+                            </div>
+                          </div>
+                          <div class="mb-3 row" *ngIf="myFormModel.get('klidarithmosChoice').value=='sms'">
+                            <label for="ibanNum" class="col-sm-4 col-form-label"
+                              >IBAN</label
+                            >
+                            <div class="col-sm-8">
+                              <input
+                                type="text"
+                                id="ibanNum"
+                                class="form-control"
+                                formControlName="ibanNum"
+                              />
+                            </div>
+                          </div>
+                      </div>
+                      <div formGroupName="comDetails">
+                        <h5 style="margin-top: 0.7rem; padding: 10px;">Συμπληρώστε τα στοιχεία επικοινωνίας σας</h5>
+                        <div class="mb-3 row">
+                            <label for="email" class="col-sm-4 col-form-label"
+                              >Email</label
+                            >
+                            <div class="col-sm-8">
+                              <input
+                                type="text"
+                                id="email"
+                                class="form-control"
+                                formControlName="email"
+                              />
+                            </div>
+                          </div>
+                          <div class="mb-3 row">
+                            <label for="phoneNumber" class="col-sm-4 col-form-label"
+                              >Σταθερό τηλέφωνο</label
+                            >
+                            <div class="col-sm-8">
+                              <input
+                                type="text"
+                                id="phoneNumber"
+                                class="form-control"
+                                formControlName="phoneNumber"
+                              />
+                            </div>
+                          </div>
+                          <div class="mb-3 row" *ngIf="myFormModel.get('klidarithmosChoice').value=='sms'">
+                            <label for="mobilePhoneNumber" class="col-sm-4 col-form-label"
+                              >Κινητό τηλέφωνο</label
+                            >
+                            <div class="col-sm-8">
+                              <input
+                                type="text"
+                                id="mobilePhoneNumber"
+                                class="form-control"
+                                formControlName="mobilePhoneNumber"
+                              />
+                            </div>
+                          </div>
+                          <div class="mb-3 row" *ngIf="myFormModel.get('klidarithmosChoice').value=='sms'">
+                            <label for="mobileProvider" class="col-sm-4 col-form-label"
+                              >Πάροχος Κινητού</label
+                            >
+                            <div class="col-sm-8">
+                              <select formControlName="mobileProvider" class="form-control">
+                                <option [ngValue]="null" selected>Επιλογή Παρόχου Κινητού</option>
+                                <option *ngFor="let it of mobilePhoneProviders" [ngValue]="it.id">
+                                 {{ it.description }}
+                                </option>
+                              </select> 
+                            </div>
+                            <p class="lblError" *ngIf="comdetails.controls['mobileProvider'].errors && !comdetails.controls['mobileProvider'].pristine">  
+                              το πεδίο Τύπος Ταυτότητας είναι υποχρεωτικό
+                          </p>
+                          </div>
+                      </div>
+                      <div *ngIf="myFormModel.get('klidarithmosChoice').value=='sms'">
+                        <h5 style="margin-top: 0.7rem; padding: 10px;">Δήλωση - Γνωστοποίηση</h5>
+                          <div class="mb-3 row">
+                              <div class="col-sm-12">
+                                <div class="form-group form-check">
+                                  <p>Επιθυμώ να παραλάβω τον κλειδάριθμο μέσω SMS και email που δηλώνω και γνωρίζω ότι τα στοιχεία της αίτησής μου, ΑΦΜ, 
+                                    τύπος και αριθμός ταυτότητας, ΙΒΑΝ και αριθμός κινητού τηλεφώνου διαβιβάζονται, μέσω διαλειτουργικότητας προς διασταύρωση 
+                                    με τα τηρούμενα από πάροχο υπηρεσιών κινητής τηλεφωνίας ή/και πάροχο υπηρεσιών πληρωμών που θα υποδείξω, αποκλειστικά και
+                                    μόνο για την πραγματοποίηση της ηλεκτρονικής ταυτοποίησής μου, σύμφωνα με τα προβλεπόμενα στην απόφαση 
+                                    Α.1082/2020 (ΦΕΚ Β’ 1303/11.4.2020). Μετά την ολοκλήρωση της διαδικασίας ταυτοποίησης, τα διαβιβασθέντα δεδομένα διαγράφονται 
+                                    από τα αρχεία του παρόχου υπηρεσιών κινητής τηλεφωνίας ή/και του παρόχου υπηρεσιών πληρωμών</p>
+                                  <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input" />
+                              </div>
+                              </div>
+                            </div>
+                          </div>
+                      <button type="submit" [disabled]="!myFormModel.valid">Υποβολή</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- main container-->
+  </div>
+  

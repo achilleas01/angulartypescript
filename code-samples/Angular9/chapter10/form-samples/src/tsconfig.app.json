@@ -10,7 +10,7 @@
     "types": []
   },
   "files": [
-    "main-template.ts",
+    "main-reactive.ts",
     "polyfills.ts"
   ],
   "include": [
