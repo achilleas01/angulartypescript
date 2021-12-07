@@ -49,7 +49,7 @@ export class AppComponent {
     this.myFormModel = new FormGroup({
       klidarithmosChoice: new FormControl("doy"),
       passwordsGroup: new FormGroup({
-        username: new FormControl('',Validators.required),
+        username: new FormControl('',[Validators.required, Validators.minLength(3)]),
         password: new FormControl('', Validators.required),
         pconfirm: new FormControl('', Validators.required)
       }),
@@ -81,6 +81,10 @@ export class AppComponent {
 
   get comdetails () {
     return this.myFormModel.controls.comDetails as FormGroup;
+  }
+
+  get passwordsarea () {
+    return this.myFormModel.controls.passwordsGroup as FormGroup;
   }
 
   onSubmit() {

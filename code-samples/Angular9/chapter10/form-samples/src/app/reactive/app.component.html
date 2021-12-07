@@ -67,6 +67,10 @@
                             formControlName="username"
                           />
                         </div>
+                        <div *ngIf="passwordsarea.controls['username'].errors && !passwordsarea.controls['username'].pristine">  
+                          <p class="lblError" *ngIf="passwordsarea.controls['username'].errors.minlength">το μήκος του πεδίου θα πρέπει να είναι τουλάχιστον 3 χαρακτήρες</p>
+                          <p class="lblError" *ngIf="passwordsarea.controls['username'].errors.required">το πεδίο username είναι υποχρεωτικό</p>
+                        </div>
                       </div>
                         <div class="mb-3 row">
                           <label for="password" class="col-sm-4 col-form-label"
@@ -224,12 +228,13 @@
                               >Σταθερό τηλέφωνο</label
                             >
                             <div class="col-sm-8">
-                              <input
+                              <app-input [control]="myFormModel.get('phoneNumber')"></app-input>
+                              <!--<input
                                 type="text"
                                 id="phoneNumber"
                                 class="form-control"
                                 formControlName="phoneNumber"
-                              />
+                              />-->
                             </div>
                           </div>
                           <div class="mb-3 row" *ngIf="myFormModel.get('klidarithmosChoice').value=='sms'">
@@ -279,10 +284,16 @@
                             </div>
                           </div>
                       <button type="submit" [disabled]="!myFormModel.valid">Υποβολή</button>
-                    </form>
+                    </form>           
                   </div>
                 </div>
               </div>
+            </div><!-- card body -->
+            <div class="card-footer">
+              <p>Form Contents: {{ myFormModel .value | json }}</p>
+              <p>Form is valid: {{ myFormModel.valid }} </p>
+              <p>Username field errors using get instead of controls: {{ passwordsarea.get('username').errors | json }}</p>
+              <p>Form errors username field: {{ passwordsarea.controls.username.errors | json }}</p>
             </div>
           </div>
         </div>
